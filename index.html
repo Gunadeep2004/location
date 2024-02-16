@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="module">
+ 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getDatabase , ref , set , get , child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyApMd8GbYn1YpR1pJvLkrkJsHa1al3V0Uo",
+    authDomain: "userlocation-179b4.firebaseapp.com",
+    projectId: "userlocation-179b4",
+    storageBucket: "userlocation-179b4.appspot.com",
+    messagingSenderId: "503658013453",
+    appId: "1:503658013453:web:bc78f7aac7432347904644"
+  };
+ const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  
+  navigator.geolocation.getCurrentPosition(showPosition);
+  function showPosition(position) {
+
+   var a = position.coords.latitude;
+   var b= position.coords.longitude;
+   console.log(a);
+   console.log(b);
+set(ref(db, 'users/'), {
+   latitude : a,
+   longitude : b
+   
+  });
+ }
+   
+
+</script>
+
+
+</body>
+</html>
+
